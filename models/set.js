@@ -1,10 +1,17 @@
 import mongoose from 'mongoose'
 
+const cardSchema = new mongoose.Schema ({
+  prompt: String,
+  answer: String,
+},{
+  timestamps: true,
+})
+
 const setSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref:'Profile'},
   title: String,
   category: {type:String, enum: ['JS', 'HTML', 'CSS', 'Python']},
-  cards: [{type:mongoose.Schema.Types.ObjectId, ref:'Card'}]
+  cards: [cardSchema]
 },{
   timestamps: true,
 })
