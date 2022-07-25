@@ -30,11 +30,32 @@ function index(req, res) {
 }
 
 function createCard(req, res) {
-  console.log("hit route")
+  Set.findById(req.params.id)
+  .populate('owner')
+  .then(set => {
+    set.cards.push(req.body)
+    set.save()
+    .then(updatedSet => res.json(updatedSet))
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+function show(req, res) {
+  Set.findById(req.params.id)
+  .populate('owner')
+  .then(set => res.json(set))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
 
 export {
   create,
   createCard,
   index,
+  show,
 }
