@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const setSchema = new mongoose.Schema({
-  onwer: {type: mongoose.Schema.Types.ObjectId, ref:'profile'},
+  owner: {type: mongoose.Schema.Types.ObjectId, ref:'profile'},
   category: String,
   cards: [{type:mongoose.Schema.Types.ObjectId, ref:'card'}]
 },{
