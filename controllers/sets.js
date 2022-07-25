@@ -17,6 +17,24 @@ function create(req, res) {
   })
 }
 
+function index(req, res) {
+  Set.find({})
+  .populate('owner')
+  .then(sets => {
+    res.json(sets)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+function createCard(req, res) {
+  console.log("hit route")
+}
+
 export {
   create,
+  createCard,
+  index,
 }
