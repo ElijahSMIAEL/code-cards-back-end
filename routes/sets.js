@@ -9,6 +9,7 @@ router.get('/', setsCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/:id', checkAuth, setsCtrl.show)
 router.post('/', checkAuth, setsCtrl.create)
 router.post('/:id/cards', checkAuth, setsCtrl.createCard)
 
