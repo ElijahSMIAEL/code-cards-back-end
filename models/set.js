@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 
 const setSchema = new mongoose.Schema({
   owner: {type: mongoose.Schema.Types.ObjectId, ref:'profile'},
-  category: String,
+  title: String,
+  category: {type:String, enum: [js, html, css, python]},
   cards: [{type:mongoose.Schema.Types.ObjectId, ref:'card'}]
 },{
   timestamps: true,
