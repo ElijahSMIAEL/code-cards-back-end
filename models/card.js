@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const cardSchema = new mongoose.Schema ({
-  owner: {type:mongoose.Schema.Types.ObjectId, ref:'profile'},
+  owner: {type:mongoose.Schema.Types.ObjectId, ref:'Profile'},
   prompt: String,
   answer: String,
 },{
