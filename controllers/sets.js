@@ -69,7 +69,16 @@ function deleteSet(req,res ) {
     console.log(err)
     res.status(500).json({err: err.errmsg})
   })
+}
 
+function deleteCard(req, res) {
+  Set.findById(req.params.id)
+  .populate('owner')
+  .then(set => {
+    set.cards.remove({_id:req.params.cardId})
+    set.save()
+    .then(updatedSet => res.json(updatedSet))
+  })
 }
 
 export {
@@ -78,4 +87,5 @@ export {
   index,
   show,
   deleteSet as delete,
+  deleteCard,
 }
