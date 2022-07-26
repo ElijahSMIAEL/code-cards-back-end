@@ -53,9 +53,29 @@ function show(req, res) {
   })
 }
 
+function deleteSet(req,res ) {
+  Set.findById(req.params.id)
+  .then(set => {
+    if(set.owner._id.equals(req.user.profile)) {
+      Set.findByIdAndDelete(set._id)
+      .then(deletedSet => {
+        res.json(deletedSet)
+      })
+    } else {
+      res.status(401).json({err:'Not Authorized'})
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+
+}
+
 export {
   create,
   createCard,
   index,
   show,
+  deleteSet as delete,
 }
