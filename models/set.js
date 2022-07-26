@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const cardSchema = new mongoose.Schema ({
   prompt: String,
-  answer: String,
+  code: String,
 },{
   timestamps: true,
 })
